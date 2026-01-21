@@ -1,0 +1,18 @@
+{
+    "GithubMarketplace": {
+        "GithubPlugins": "GitHub Plugins",
+        "Description": "Install Matomo plugins directly from GitHub zip URLs.",
+        "InstallFromZip": "Install Plugin from ZIP URL",
+        "ZipUrl": "GitHub ZIP URL",
+        "ZipUrlHelp": "Paste the URL to a GitHub release zip file (e.g., https://github.com/owner/repo/archive/refs/tags/v1.0.0.zip)",
+        "Install": "Install",
+        "NoPlugins": "No plugins installed from GitHub yet.",
+        "InstalledPlugins": "Installed Plugins",
+        "PluginName": "Plugin",
+        "Version": "Version",
+        "InstalledAt": "Installed",
+        "Remove": "Remove",
+        "ConfirmRemove": "Remove this plugin from tracking? (This does not uninstall the plugin)",
+        "RemoveNote": "Note: Removing from tracking does not uninstall the plugin. Use the Plugins page to uninstall."
+    }
+}

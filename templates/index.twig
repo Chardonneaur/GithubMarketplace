@@ -1,0 +1,75 @@
+{% extends 'admin.twig' %}
+
+{% set title %}{{ 'GithubMarketplace_GithubPlugins'|translate }}{% endset %}
+
+{% block content %}
+<div id="content" class="card">
+    <div class="card-content">
+        <h2 class="card-title">{{ 'GithubMarketplace_GithubPlugins'|translate }}</h2>
+
+        <p>{{ 'GithubMarketplace_Description'|translate }}</p>
+
+        <div style="margin: 20px 0; padding: 20px; background: #f5f5f5; border-radius: 4px;">
+            <h3>{{ 'GithubMarketplace_InstallFromZip'|translate }}</h3>
+            <form method="post" action="{{ linkTo({'module': 'GithubMarketplace', 'action': 'install'}) }}">
+                <input type="hidden" name="nonce" value="{{ nonce }}">
+
+                <div style="margin-bottom: 15px;">
+                    <label for="zipUrl" style="display: block; margin-bottom: 5px; font-weight: bold;">
+                        {{ 'GithubMarketplace_ZipUrl'|translate }}
+                    </label>
+                    <input type="text" id="zipUrl" name="zipUrl"
+                           placeholder="https://github.com/owner/repo/archive/refs/tags/v1.0.0.zip"
+                           style="width: 100%; max-width: 600px; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                    <small style="color: #666; display: block; margin-top: 5px;">
+                        {{ 'GithubMarketplace_ZipUrlHelp'|translate }}
+                    </small>
+                </div>
+
+                <button type="submit" class="btn btn-primary">{{ 'GithubMarketplace_Install'|translate }}</button>
+            </form>
+        </div>
+
+        {% if plugins is empty %}
+            <p style="color: #666;">{{ 'GithubMarketplace_NoPlugins'|translate }}</p>
+        {% else %}
+            <h3>{{ 'GithubMarketplace_InstalledPlugins'|translate }}</h3>
+            <table class="dataTable entityTable" style="width: 100%;">
+                <thead>
+                    <tr>
+                        <th>{{ 'GithubMarketplace_PluginName'|translate }}</th>
+                        <th>{{ 'GithubMarketplace_Version'|translate }}</th>
+                        <th>{{ 'GithubMarketplace_ZipUrl'|translate }}</th>
+                        <th>{{ 'GithubMarketplace_InstalledAt'|translate }}</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for plugin in plugins %}
+                        <tr>
+                            <td><strong>{{ plugin.plugin_name }}</strong></td>
+                            <td>{{ plugin.version }}</td>
+                            <td style="max-width: 300px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                                <a href="{{ plugin.zip_url }}" target="_blank" title="{{ plugin.zip_url }}">{{ plugin.zip_url }}</a>
+                            </td>
+                            <td>{{ plugin.installed_at }}</td>
+                            <td>
+                                <form method="post" action="{{ linkTo({'module': 'GithubMarketplace', 'action': 'remove'}) }}" style="display: inline;">
+                                    <input type="hidden" name="nonce" value="{{ nonce }}">
+                                    <input type="hidden" name="pluginId" value="{{ plugin.id }}">
+                                    <button type="submit" class="btn btn-sm" onclick="return confirm('{{ 'GithubMarketplace_ConfirmRemove'|translate|e('js') }}');">
+                                        {{ 'GithubMarketplace_Remove'|translate }}
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <p style="margin-top: 10px; font-size: 12px; color: #666;">
+                {{ 'GithubMarketplace_RemoveNote'|translate }}
+            </p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

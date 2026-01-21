@@ -1,0 +1,18 @@
+{
+    "name": "GithubMarketplace",
+    "description": "Install and manage Matomo plugins directly from GitHub repositories, bypassing the official marketplace.",
+    "version": "1.0.0",
+    "require": {
+        "matomo": ">=5.0.0-b1,<6.0.0-b1"
+    },
+    "authors": [
+        {
+            "name": "Matomo",
+            "email": "hello@matomo.org",
+            "homepage": "https://matomo.org"
+        }
+    ],
+    "license": "GPL v3+",
+    "keywords": ["github", "marketplace", "plugins", "install"],
+    "homepage": "https://matomo.org"
+}
