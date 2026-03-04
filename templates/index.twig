@@ -50,7 +50,11 @@
                             <td><strong>{{ plugin.plugin_name }}</strong></td>
                             <td>{{ plugin.version }}</td>
                             <td style="max-width: 300px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
-                                <a href="{{ plugin.zip_url }}" target="_blank" title="{{ plugin.zip_url }}">{{ plugin.zip_url }}</a>
+                                {% if plugin.zip_url|slice(0, 8) == 'https://' %}
+                                    <a href="{{ plugin.zip_url }}" target="_blank" rel="noopener noreferrer" title="{{ plugin.zip_url }}">{{ plugin.zip_url }}</a>
+                                {% else %}
+                                    {{ plugin.zip_url }}
+                                {% endif %}
                             </td>
                             <td>{{ plugin.installed_at }}</td>
                             <td>

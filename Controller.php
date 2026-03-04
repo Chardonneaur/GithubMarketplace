@@ -53,6 +53,13 @@ class Controller extends \Piwik\Plugin\ControllerAdmin
             return;
         }
 
+        $urlError = $this->validateZipUrl($zipUrl);
+        if ($urlError !== null) {
+            $this->addNotification($urlError, Notification::CONTEXT_ERROR);
+            $this->redirectToIndex('GithubMarketplace', 'index');
+            return;
+        }
+
         try {
             // Download the zip
             $tmpPath = StaticContainer::get('path.tmp') . '/latest/plugins/';
@@ -117,6 +124,35 @@ class Controller extends \Piwik\Plugin\ControllerAdmin
         }
 
         $this->redirectToIndex('GithubMarketplace', 'index');
+    }
+
+    /**
+     * Validates that the ZIP URL is a safe, allowed GitHub HTTPS URL.
+     * Returns an error string on failure, null on success.
+     *
+     * Allowed hosts: github.com, codeload.github.com
+     * Scheme:        https only
+     * Path:          must end with .zip
+     */
+    private function validateZipUrl(string $url): ?string
+    {
+        if (!str_starts_with($url, 'https://')) {
+            return 'Only HTTPS URLs are accepted.';
+        }
+
+        $host = strtolower((string) parse_url($url, PHP_URL_HOST));
+        $allowedHosts = ['github.com', 'codeload.github.com'];
+
+        if (!in_array($host, $allowedHosts, true)) {
+            return 'Only GitHub URLs (github.com) are accepted.';
+        }
+
+        $path = strtolower((string) parse_url($url, PHP_URL_PATH));
+        if (!str_ends_with($path, '.zip')) {
+            return 'The URL must point to a .zip file.';
+        }
+
+        return null;
     }
 
     private function addNotification($message, $context)
