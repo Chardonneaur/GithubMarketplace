@@ -1,18 +1,31 @@
 {
     "name": "GithubMarketplace",
-    "description": "Install and manage Matomo plugins directly from GitHub repositories, bypassing the official marketplace.",
+    "description": "Install and manage Matomo plugins directly from GitHub ZIP releases, without needing access to the Matomo Marketplace. Useful for self-hosted instances that use community or private plugins hosted on GitHub.",
     "version": "1.0.0",
+    "theme": false,
     "require": {
         "matomo": ">=5.0.0-b1,<6.0.0-b1"
     },
     "authors": [
         {
-            "name": "Matomo",
-            "email": "hello@matomo.org",
-            "homepage": "https://matomo.org"
+            "name": "Ronan Chardonneau",
+            "email": "contact@ronan-chardonneau.fr",
+            "homepage": "https://ronan-chardonneau.fr"
         }
     ],
+    "support": {
+        "email": "contact@ronan-chardonneau.fr",
+        "issues": "https://github.com/Chardonneaur/GithubMarketplace/issues",
+        "source": "https://github.com/Chardonneaur/GithubMarketplace"
+    },
+    "homepage": "https://github.com/Chardonneaur/GithubMarketplace",
     "license": "GPL v3+",
-    "keywords": ["github", "marketplace", "plugins", "install"],
-    "homepage": "https://matomo.org"
+    "keywords": [
+        "github",
+        "plugins",
+        "install",
+        "self-hosted",
+        "administration"
+    ],
+    "category": "others"
 }
