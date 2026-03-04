@@ -2,7 +2,7 @@
 
 **Install Matomo plugins directly from GitHub ZIP releases — no Marketplace account required.**
 
-> This plugin is a community contribution and is not officially supported by Matomo GmbH.
+> This plugin is a community contribution and is not officially supported by Matomo.
 > It is provided under the GPL v3 license without any warranty of fitness for a particular purpose.
 
 ## Description
