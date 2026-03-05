@@ -1,7 +1,7 @@
 {
     "name": "GithubMarketplace",
     "description": "Install and manage Matomo plugins directly from GitHub ZIP releases, without needing access to the Matomo Marketplace. Useful for self-hosted instances that use community or private plugins hosted on GitHub.",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "theme": false,
     "require": {
         "matomo": ">=5.0.0-b1,<6.0.0-b1"
